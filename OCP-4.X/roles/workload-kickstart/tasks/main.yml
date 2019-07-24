@@ -19,19 +19,19 @@
     - /home/core/.kube/config
     - /root/.kube/config
   when:
-    - KUBECONFIG_AUTH_DIR_PATH is undefined
+    - kubeconfig_auth_dir_path is undefined
 
 # handle case where kubeconfig is in another specified dir
 - name: copy the kubeconfig to workload node from specific directory
   copy:
-    src: "{{ KUBECONFIG_AUTH_DIR_PATH }}/auth/kubeconfig"
+    src: "{{ kubeconfig_auth_dir_path }}/auth/kubeconfig"
     dest: "{{ item }}"
   with_items:
     - /home/core/.kube/config
     - /root/.kube/config
   when:
-    - KUBECONFIG_AUTH_DIR_PATH is defined
-    - KUBECONFIG_AUTH_DIR_PATH != ""
+    - kubeconfig_auth_dir_path is defined
+    - kubeconfig_auth_dir_path != ""
 
 - name: ensure that ssh dir exists
   file:
@@ -76,6 +76,6 @@
     name: "{{ item }}"
     groups: nodes
     ansible_ssh_common_args: |-
-      -o ProxyCommand='ssh -i {{ansible_private_key_file}} -W %h:%p {{ OPENSHIFT_INSTALL_USER | default('core') }}@{{inventory_hostname}}'
+      -o ProxyCommand='ssh -i {{ansible_private_key_file}} -W %h:%p {{ openshift_install_user | default('core') }}@{{inventory_hostname}}'
   with_items:
     - "{{ ocp_nodes.stdout_lines }}"

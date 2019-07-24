@@ -92,6 +92,6 @@
         dest: "{{playbook_dir}}/kubeconfig"
         flat: true
       when:
-        - KUBECONFIG_AUTH_DIR_PATH is undefined
+        - kubeconfig_auth_dir_path is undefined
 
-  when: OPENSHIFT_INSTALL_PLATFORM == "aws"
+  when: openshift_install_platform == "aws"

@@ -1,10 +1,10 @@
 {
 	"auths": {
 		"quay.io": {
-			"auth": "{{ OPENSHIFT_INSTALL_QUAY_REGISTRY_TOKEN }}"
+			"auth": "{{ openshift_install_quay_registry_token }}"
 		},
-                "{{ OPENSHIFT_INSTALL_IMAGE_REGISTRY }}": {
-			"auth": "{{ OPENSHIFT_INSTALL_REGISTRY_TOKEN }}"
+                "{{ openshift_install_image_registry }}": {
+			"auth": "{{ openshift_install_registry_token }}"
 		}
 	}
 }

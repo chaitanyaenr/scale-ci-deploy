@@ -7,7 +7,7 @@
 
     - name: cleanup libvirt cluster
       shell: "printf 'y' | {{ ansible_env.HOME }}/cleanup.sh"
-  when: OPENSHIFT_INSTALL_PLATFORM == "libvirt"
+  when: openshift_install_platform == "libvirt"
 
 - name: set workdir
   set_fact:
@@ -19,7 +19,7 @@
 
 - name: cleanup aws cluster
   shell: "cd {{ workdir }}; bin/openshift-install destroy cluster --log-level=debug"
-  when: OPENSHIFT_INSTALL_PLATFORM == "aws"
+  when: openshift_install_platform == "aws"
 
 - name: cleanup workdir
   file:

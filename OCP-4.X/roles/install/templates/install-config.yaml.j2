@@ -1,40 +1,40 @@
-apiVersion: {{ OPENSHIFT_INSTALL_APIVERSION }}
-baseDomain: {{ OPENSHIFT_INSTALL_BASE_DOMAIN }}
+apiVersion: {{ openshift_install_apiversion }}
+baseDomain: {{ openshift_install_base_domain }}
 compute:
 - name: worker
   platform:
    aws:
-     type: {{ OPENSHIFT_INSTALL_WORKER_INSTANCE_FLAVOR }}
+     type: {{ openshift_install_worker_instance_flavor }}
      rootVolume:
-       iops: {{ OPENSHIFT_INSTALL_WORKER_VOLUME_IOPS }}
-       size: {{ OPENSHIFT_INSTALL_WORKER_ROOT_VOLUME_SIZE }}
-       type: {{ OPENSHIFT_INSTALL_WORKER_ROOT_VOLUME_TYPE }}
-  replicas: {{ OPENSHIFT_INSTALL_WORKER_COUNT }} 
+       iops: {{ openshift_install_worker_volume_iops }}
+       size: {{ openshift_install_worker_root_volume_size }}
+       type: {{ openshift_install_worker_root_volume_type }}
+  replicas: {{ openshift_install_worker_count }} 
 ControlPlane:
   name: master
   platform:
    aws:
-     type: {{ OPENSHIFT_INSTALL_MASTER_INSTANCE_FLAVOR }}
+     type: {{ openshift_install_master_instance_flavor }}
      rootVolume:
-       iops: {{ OPENSHIFT_INSTALL_MASTER_VOLUME_IOPS }}
-       size: {{ OPENSHIFT_INSTALL_MASTER_ROOT_VOLUME_SIZE }}
-       type: {{ OPENSHIFT_INSTALL_MASTER_ROOT_VOLUME_TYPE }}
-  replicas: {{ OPENSHIFT_INSTALL_MASTER_COUNT }}
+       iops: {{ openshift_install_master_volume_iops }}
+       size: {{ openshift_install_master_root_volume_size }}
+       type: {{ openshift_install_master_root_volume_type }}
+  replicas: {{ openshift_install_master_count }}
 metadata:
   creationTimestamp: null
-  name: {{ OPENSHIFT_INSTALL_CLUSTER_NAME }} 
+  name: {{ openshift_install_cluster_name }} 
 networking:
   clusterNetwork:
-  - cidr: {{ OPENSHIFT_INSTALL_CIDR }}
-    hostPrefix: {{ OPENSHIFT_INSTALL_HOST_PREFIX }}
-  machineCIDR: {{ OPENSHIFT_INSTALL_MACHINE_CIDR }}
+  - cidr: {{ openshift_install_cidr }}
+    hostPrefix: {{ openshift_install_host_prefix }}
+  machineCIDR: {{ openshift_install_machine_cidr }}
   networkType: OpenshiftSDN
   serviceNetwork:
-  - {{ OPENSHIFT_INSTALL_SERVICE_NETWORK }}
+  - {{ openshift_install_service_network }}
 platform:
   aws:
-    region: {{ OPENSHIFT_INSTALL_AWS_REGION }}
+    region: {{ openshift_install_aws_region }}
 pullSecret: |+
-  {{ OPENSHIFT_INSTALL_PULL_SECRET }}
+  {{ openshift_install_pull_secret }}
 sshKey: |+
-  {{ OPENSHIFT_INSTALL_SSH_PUB_KEY }}
+  {{ openshift_install_ssh_pub_key }}
