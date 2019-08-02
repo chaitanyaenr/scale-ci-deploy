@@ -23,7 +23,9 @@ openshift_client_location: "{{ lookup('env', 'OPENSHIFT_CLIENT_LOCATION')|defaul
 openshift_install_release_image_override: "{{ lookup('env', 'OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE') }}"
 openshift_install_apiversion: "{{ lookup('env', 'OPENSHIFT_INSTALL_APIVERSION')|default('v1', true) }}"
 # ssh key for install-config
-openshift_install_ssh_pub_key_file: "{{ lookup('env', 'OPENSHIFT_INSTALL_SSH_PUB_KEY_FILE') }}"
+#openshift_install_ssh_pub_key_file: "{{ lookup('env', 'OPENSHIFT_INSTALL_SSH_PUB_KEY_FILE') }}"
+openshift_install_ssh_pub_key: "{{ lookup('env', 'OPENSHIFT_INSTALL_SSH_PUB_KEY') }}"
+
 # Secrets/Tokens for extract and installing
 openshift_install_pull_secret: "{{ lookup('env', 'OPENSHIFT_INSTALL_PULL_SECRET') }}"
 openshift_install_quay_registry_token: "{{ lookup('env', 'OPENSHIFT_INSTALL_QUAY_REGISTRY_TOKEN') }}"
@@ -38,7 +40,7 @@ gopath: "{{ lookup('env', 'GOPATH')|default('/root/.go', true) }}"
 aws_profile: "{{ lookup('env', 'AWS_PROFILE')|default('default', true) }}"
 aws_access_key_id: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
 aws_secret_access_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
-aws_region: "{{ lookup('env', 'AWS_REGION') }}"
+aws_region: "{{ lookup('env', 'OPENSHIFT_INSTALL_AWS_REGION') }}"
 
 # Cluster configuration
 openshift_base_domain: "{{ lookup('env', 'OPENSHIFT_BASE_DOMAIN') }}"

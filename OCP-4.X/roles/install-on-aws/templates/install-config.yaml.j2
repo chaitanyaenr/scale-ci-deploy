@@ -37,4 +37,4 @@ platform:
 pullSecret: |+
   {{ openshift_install_pull_secret | tojson }}
 sshKey: |+
-  {{ install_ssh_pub_key.content| b64decode }}
+  {{ openshift_install_ssh_pub_key }}
