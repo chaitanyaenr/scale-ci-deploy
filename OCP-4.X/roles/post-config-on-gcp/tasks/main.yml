@@ -30,11 +30,7 @@
 
 - name: Create firewall rule for ICMP
   shell: |
-    gcloud compute firewall-rules create scale-ci-icmp-{{ rhcos_cluster_name.stdout }} --network {{ gcp_network.stdout }} --priority 101 --description "scale-ci allow icmp" --allow icmp
-
-- name: Create firewall rule for ssh (22)
-  shell: |
-    gcloud compute firewall-rules create scale-ci-ssh-{{ rhcos_cluster_name.stdout }} --network {{ gcp_network.stdout }} --direction INGRESS --priority 102 --description "scale-ci allow ssh" --allow tcp:22
+    gcloud compute firewall-rules create scale-ci-icmp-{{ rhcos_cluster_name.stdout }} --network {{ gcp_network.stdout }} --priority 102 --description "scale-ci allow icmp" --allow icmp
 
 - name: Create firewall rule for pbench-agent ssh (2022)
   shell: |

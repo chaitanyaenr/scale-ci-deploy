@@ -71,6 +71,15 @@
 
 - name: GCP block of tasks
   block:
+    - name: Get network name
+      shell: |
+        gcloud compute networks list | grep {{ rhcos_cluster_name.stdout }} | awk '{print $1}'
+      register: gcp_network
+
+    - name: Create firewall rule for ssh (22)
+      shell: |
+        gcloud compute firewall-rules create scale-ci-ssh-{{ rhcos_cluster_name.stdout }} --network {{ gcp_network.stdout }} --direction INGRESS --priority 101 --description "scale-ci allow ssh" --allow tcp:22
+
     - name: (GCP) Template out machineset yamls
       template:
         src: "{{item.src}}"
