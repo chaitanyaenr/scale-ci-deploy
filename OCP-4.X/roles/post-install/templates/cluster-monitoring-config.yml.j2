@@ -13,22 +13,10 @@ data:
       baseImage: openshift/prometheus
       nodeSelector:
         node-role.kubernetes.io/infra: ""
-      volumeClaimTemplate:
-        spec:
-          storageClassName: {{openshift_prometheus_storage_class}}
-          resources:
-            requests:
-              storage: {{openshift_prometheus_storage_size}}
     alertmanagerMain:
       baseImage: openshift/prometheus-alertmanager
       nodeSelector:
         node-role.kubernetes.io/infra: ""
-      volumeClaimTemplate:
-        spec:
-          storageClassName: {{openshift_alertmanager_storage_class}}
-          resources:
-            requests:
-              storage: {{openshift_alertmanager_storage_size}}
     nodeExporter:
       baseImage: openshift/prometheus-node-exporter
     kubeRbacProxy:
