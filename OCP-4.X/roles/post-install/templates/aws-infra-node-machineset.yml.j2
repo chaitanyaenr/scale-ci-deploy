@@ -208,7 +208,11 @@ items:
             - name: kubernetes.io/cluster/{{cluster_name.stdout}}
               value: owned
             userDataSecret:
+{% if ocp_version.stdout | version_compare('4.6','<') %}
               name: worker-user-data
+{% else %}
+              name: worker-user-data-managed
+{% endif %}
         versions:
           kubelet: ""
   status:

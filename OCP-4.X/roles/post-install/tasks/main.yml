@@ -28,6 +28,10 @@
   shell: oc get nodes | grep " Ready" -ic
   register: current_node_count
 
+- name: Get current OCP version
+  shell: oc version -o json | jq '.openshiftVersion'
+  register: ocp_version
+
 - name: AWS Block of tasks
   block:
     - name: (AWS) Get AMI ID
